@@ -335,7 +335,7 @@ This is a demonstration MVP. For production use, consider:
 | Shivasubrahmanya K C        |  2027        |
 | G Nisha Bangera     	       |  2027        |
 ----------------------------------------------
-- **Selected Problem Statement:**"SynergySphere – Advanced Team Collaboration Platform"*
+- **Selected Problem Statement:** "SynergySphere – Advanced Team Collaboration Platform"
 - **Video Link:** 
 
 ---
