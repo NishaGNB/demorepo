@@ -326,6 +326,21 @@ This is a demonstration MVP. For production use, consider:
 - Setting up monitoring
 - Adding data backup strategies
 
+## 🏆 Team Details (To Be Filled)
+ ---------------------------------------------
+| Member Name                 | Passing Year |
+|-----------------------------|--------------|
+| Mance Uthappa		             |  2027        |
+| Amulya U Shet        	      |  2027        |
+| Shivasubrahmanya K C        |  2027        |
+| G Nisha Bangera     	       |  2027        |
+----------------------------------------------
+- **Selected Problem Statement:**"SynergySphere – Advanced Team Collaboration Platform"*
+- **Video Link:** 
+
+---
+
+
 ## 📄 License
 
 This project is created for demonstration purposes. Feel free to use as a learning resource or foundation for your own projects.
