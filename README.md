@@ -44,33 +44,32 @@ A comprehensive full-stack team collaboration application built with React front
 ## 📁 Project Structure
 
 
-SynergySphere/
-├── 📁 frontend/              # React TypeScript application
-│   ├── src/
-│   │   ├── components/       # Reusable React components
-│   │   ├── contexts/        # React Context providers
-│   │   ├── pages/           # Page components
-│   │   ├── services/        # API service layer
-│   │   ├── types/           # TypeScript type definitions
-│   │   └── utils/           # Utility functions
-│   ├── public/              # Static assets
-│   └── package.json         # Dependencies and scripts
-├── 📁 backend/               # FastAPI Python server
-│   ├── app/
-│   │   ├── routers/         # API route handlers
-│   │   ├── auth.py          # Authentication utilities
-│   │   ├── database.py      # Database operations
-│   │   ├── models.py        # Pydantic models
-│   │   ├── scheduler.py     # Background task scheduler
-│   │   └── main.py          # Application entry point
-│   ├── requirements.txt     # Python dependencies
-│   └── .env.example         # Environment configuration
-├── 📁 database/              # MySQL schema and data
-│   ├── schema.sql           # Database structure
-│   ├── sample_data.sql      # Test data
-│   └── README.md            # Database setup guide
-└── 📁 docs/                  # Additional documentation
-
+project-management-system/
+├── server/                          # Backend API
+│   ├── app.js                      # Main server entry point
+│   ├── config/                     # Configuration files
+│   │   ├── database.js             # PostgreSQL connection & schema
+│   │   └── redis.js                # Redis connection & cache utilities
+│   ├── middleware/                 # Express middleware
+│   │   ├── auth.js                 # Authentication & authorization
+│   │   └── errorHandler.js         # Centralized error handling
+│   ├── routes/                     # API route handlers
+│   │   ├── auth.js                 # Authentication endpoints
+│   │   ├── projects.js             # Project CRUD operations
+│   │   ├── tasks.js                # Task management
+│   │   ├── discussions.js          # Discussion threads
+│   │   ├── users.js                # User management
+│   │   └── notifications.js        # Notification system
+│   ├── services/                   # Business logic services
+│   │   └── deadlineService.js      # Deadline monitoring
+│   ├── socket/                     # WebSocket handlers
+│   │   └── socketHandler.js        # Real-time event handling
+│   └── package.json                # Backend dependencies
+├── client/                         # Frontend React application
+│   └── [React app structure]       # To be created
+├── ARCHITECTURE.md                 # Detailed system architecture
+├── package.json                    # Root package configuration
+└── README.md                      # This file
 
 ## ⚡ Quick Start
 
