@@ -45,7 +45,7 @@ A comprehensive full-stack team collaboration application built with React front
 
 
 SynergySphere/
-├── 📁 frontend/              # React TypeScript application
+├── frontend/              # React TypeScript application
 │   ├── src/
 │   │   ├── components/       # Reusable React components
 │   │   ├── contexts/        # React Context providers
@@ -55,7 +55,7 @@ SynergySphere/
 │   │   └── utils/           # Utility functions
 │   ├── public/              # Static assets
 │   └── package.json         # Dependencies and scripts
-├── 📁 backend/               # FastAPI Python server
+├── backend/               # FastAPI Python server
 │   ├── app/
 │   │   ├── routers/         # API route handlers
 │   │   ├── auth.py          # Authentication utilities
@@ -65,11 +65,12 @@ SynergySphere/
 │   │   └── main.py          # Application entry point
 │   ├── requirements.txt     # Python dependencies
 │   └── .env.example         # Environment configuration
-├── 📁 database/              # MySQL schema and data
+├── database/              # MySQL schema and data
 │   ├── schema.sql           # Database structure
 │   ├── sample_data.sql      # Test data
 │   └── README.md            # Database setup guide
-└── 📁 docs/                  # Additional documentation
+└── docs/                  # Additional documentation
+
 
 
 ## ⚡ Quick Start
