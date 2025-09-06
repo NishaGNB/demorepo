@@ -77,14 +77,14 @@ See the original README for setup scripts and step-by-step instructions for data
 ---
 
 ## 🏆 Team Details (To Be Filled)
- _____________________________________________
+ ---------------------------------------------
 | Member Name                 | Passing Year |
 |-----------------------------|--------------|
-| Mance Uthappa		      |  2027        |
+| Mance Uthappa		             |  2027        |
 | Amulya U Shet        	      |  2027        |
 | Shivasubrahmanya K C        |  2027        |
-| G Nisha Bangera     	      |  2027        |
-|____________________________________________|
+| G Nisha Bangera     	       |  2027        |
+----------------------------------------------
 - **Selected Problem Statement:**"SynergySphere – Advanced Team Collaboration Platform"*
 - **Video Link:** 
 
@@ -93,9 +93,5 @@ See the original README for setup scripts and step-by-step instructions for data
 ## 📄 License and Acknowledgments
 
 This project is for educational demonstration purposes. Inspired by the best of open-source collaboration platforms—built with FastAPI, React, MySQL, and more.
-
 For detailed setup, API reference, deployment, and troubleshooting, see the sections below or the original technical documentation.
 
----
-
-**Note:** Remember to update the “Team Details” and any wireframe/screens as your prototype evolves.
