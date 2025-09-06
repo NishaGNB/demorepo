@@ -1,354 +1,459 @@
-# SynergySphere - Team Collaboration MVP
+# Project Management System
 
-A comprehensive full-stack team collaboration application built with React frontend, Python FastAPI backend, and MySQL database. This MVP demonstrates modern web development practices with real-time features, responsive design, and robust backend architecture.
+A comprehensive project management system that enables teams to collaborate effectively through project creation, task management, and threaded discussions. Built with modern technologies and designed for scalability and responsiveness.
 
-## 🚀 Features
+## 🌟 Features
 
 ### Core Functionality
-- **🔐 Authentication**: Secure JWT-based registration, login, and logout
-- **📊 Project Management**: Create projects, manage team members with role-based access
-- **✅ Task Management**: Create, assign, and track tasks with status updates
-- **💬 Real-time Communication**: Threaded comments and discussions
-- **🔔 Smart Notifications**: In-app and email notifications with deadline reminders
-- **📱 Responsive Design**: Fully responsive for desktop, tablet, and mobile
+- **Project Management**: Create, manage, and track multiple projects with team collaboration
+- **Task Management**: Assign tasks with deadlines, priorities, and status tracking (To-Do, In Progress, Done)
+- **Team Collaboration**: Add team members with role-based permissions (Owner, Admin, Member)
+- **Threaded Discussions**: Project-specific discussion threads with reply functionality
+- **Real-time Updates**: Live notifications and updates via WebSocket connections
+- **Deadline Monitoring**: Automatic alerts for approaching and overdue tasks
+- **User Management**: Complete authentication system with JWT tokens
 
-### Technical Features
-- **⚡ Real-time Updates**: WebSocket integration for live collaboration
-- **📧 Email System**: Automated deadline reminders and task notifications
-- **🎨 Modern UI/UX**: Clean, intuitive interface with CSS animations
-- **🔒 Secure Backend**: JWT authentication with password hashing
-- **📈 Progress Tracking**: Visual progress indicators and completion statistics
+### Advanced Features
+- **Efficient Data Structures**: Optimized database queries with proper indexing
+- **Caching System**: Redis-based caching for improved performance
+- **Role-based Access Control**: Granular permissions system
+- **Real-time Notifications**: Instant updates on task changes and new messages
+- **Search & Filtering**: Advanced search capabilities across projects and tasks
+- **Activity Tracking**: Comprehensive activity logs for all project actions
+- **Responsive Design**: Mobile-friendly user interface
+- **Scalable Architecture**: Microservices-ready design
 
-## 🛠 Tech Stack
+## 🏗️ System Architecture
 
-### Frontend
-- **React 19** with TypeScript
-- **React Router** for navigation
-- **Context API** for state management
-- **CSS3** with Flexbox/Grid (no external UI libraries)
-- **WebSocket API** for real-time features
+### Backend Stack
+- **Framework**: Node.js with Express.js
+- **Database**: PostgreSQL with connection pooling
+- **Caching**: Redis for session management and real-time features
+- **Authentication**: JWT tokens with refresh token rotation
+- **Real-time**: Socket.IO for WebSocket connections
+- **Validation**: Joi for input validation
+- **Security**: Helmet, CORS, rate limiting, bcrypt for password hashing
 
-### Backend
-- **FastAPI** with Python 3.8+
-- **JWT Authentication** with bcrypt password hashing
-- **MySQL** database with connection pooling
-- **WebSocket** support for real-time updates
-- **APScheduler** for background tasks
-- **SMTP** integration for email notifications
+### Database Design
+- **Users**: Authentication and profile information
+- **Projects**: Project metadata and settings
+- **Project Members**: Many-to-many relationship with roles
+- **Tasks**: Task management with assignments and deadlines
+- **Discussions**: Threaded discussion system
+- **Notifications**: User notification system
+- **Efficient Indexing**: Optimized queries with strategic indexes
 
-### Database
-- **MySQL 8.0+** with foreign key constraints
-- **Normalized schema** with proper indexing
-- **Sample data** for testing and development
+### Key Data Structures
+- **Hash Maps**: Quick user and project lookups
+- **Priority Queues**: Deadline-based task sorting
+- **Trees**: Threaded discussion message hierarchy
+- **Sets**: Project member permissions management
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js (v16 or higher)
+- PostgreSQL (v12 or higher)
+- Redis server
+- npm or yarn
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/project-management-system.git
+   cd project-management-system
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm run setup
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp server/.env.example server/.env
+   ```
+   Edit `server/.env` with your configuration:
+   ```env
+   # Database
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_NAME=projectmanagement
+   DB_USER=postgres
+   DB_PASSWORD=your_password
+   
+   # Redis
+   REDIS_HOST=localhost
+   REDIS_PORT=6379
+   
+   # JWT Secrets (generate secure secrets)
+   JWT_SECRET=your-super-secret-jwt-key
+   JWT_REFRESH_SECRET=your-super-secret-refresh-key
+   ```
+
+4. **Set up the database**
+   ```bash
+   # Create PostgreSQL database
+   createdb projectmanagement
+   
+   # Run migrations (tables will be created automatically on first run)
+   npm run server:start
+   ```
+
+5. **Start the development servers**
+   ```bash
+   npm run dev
+   ```
+   
+   This will start:
+   - Backend server on `http://localhost:5000`
+   - Frontend development server on `http://localhost:3000`
 
 ## 📁 Project Structure
 
 ```
-SynergySphere/
-├── 📁 frontend/              # React TypeScript application
-│   ├── src/
-│   │   ├── components/       # Reusable React components
-│   │   ├── contexts/        # React Context providers
-│   │   ├── pages/           # Page components
-│   │   ├── services/        # API service layer
-│   │   ├── types/           # TypeScript type definitions
-│   │   └── utils/           # Utility functions
-│   ├── public/              # Static assets
-│   └── package.json         # Dependencies and scripts
-├── 📁 backend/               # FastAPI Python server
-│   ├── app/
-│   │   ├── routers/         # API route handlers
-│   │   ├── auth.py          # Authentication utilities
-│   │   ├── database.py      # Database operations
-│   │   ├── models.py        # Pydantic models
-│   │   ├── scheduler.py     # Background task scheduler
-│   │   └── main.py          # Application entry point
-│   ├── requirements.txt     # Python dependencies
-│   └── .env.example         # Environment configuration
-├── 📁 database/              # MySQL schema and data
-│   ├── schema.sql           # Database structure
-│   ├── sample_data.sql      # Test data
-│   └── README.md            # Database setup guide
-└── 📁 docs/                  # Additional documentation
+project-management-system/
+├── server/                          # Backend API
+│   ├── app.js                      # Main server entry point
+│   ├── config/                     # Configuration files
+│   │   ├── database.js             # PostgreSQL connection & schema
+│   │   └── redis.js                # Redis connection & cache utilities
+│   ├── middleware/                 # Express middleware
+│   │   ├── auth.js                 # Authentication & authorization
+│   │   └── errorHandler.js         # Centralized error handling
+│   ├── routes/                     # API route handlers
+│   │   ├── auth.js                 # Authentication endpoints
+│   │   ├── projects.js             # Project CRUD operations
+│   │   ├── tasks.js                # Task management
+│   │   ├── discussions.js          # Discussion threads
+│   │   ├── users.js                # User management
+│   │   └── notifications.js        # Notification system
+│   ├── services/                   # Business logic services
+│   │   └── deadlineService.js      # Deadline monitoring
+│   ├── socket/                     # WebSocket handlers
+│   │   └── socketHandler.js        # Real-time event handling
+│   └── package.json                # Backend dependencies
+├── client/                         # Frontend React application
+│   └── [React app structure]       # To be created
+├── ARCHITECTURE.md                 # Detailed system architecture
+├── package.json                    # Root package configuration
+└── README.md                      # This file
 ```
-
-## ⚡ Quick Start
-
-### Prerequisites
-- **Node.js 18+** and npm
-- **Python 3.8+** and pip
-- **MySQL 8.0+** server
-- Modern web browser
-
-### 1. Database Setup
-
-```bash
-# Start MySQL service
-sudo service mysql start  # Linux
-# or
-brew services start mysql  # macOS
-# or start MySQL from Windows Services
-
-# Create database and user
-mysql -u root -p
-```
-
-```sql
-CREATE DATABASE synergysphere;
-CREATE USER 'synergy_user'@'localhost' IDENTIFIED BY 'synergy_password';
-GRANT ALL PRIVILEGES ON synergysphere.* TO 'synergy_user'@'localhost';
-FLUSH PRIVILEGES;
-EXIT;
-```
-
-```bash
-# Import schema and sample data
-cd database/
-mysql -u synergy_user -p synergysphere < schema.sql
-mysql -u synergy_user -p synergysphere < sample_data.sql
-```
-
-### 2. Backend Setup
-
-```bash
-cd backend/
-
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Configure environment
-cp .env.example .env
-# Edit .env with your settings
-
-# Start the server
-python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-### 3. Frontend Setup
-
-```bash
-cd frontend/
-
-# Install dependencies
-npm install
-
-# Start development server
-npm start
-```
-
-### 4. Access the Application
-
-- **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:8000
-- **API Documentation**: http://localhost:8000/docs
 
 ## 🔧 Configuration
 
-### Backend Environment Variables (.env)
+### Environment Variables
 
-```env
-# Database
-DB_HOST=localhost
-DB_PORT=3306
-DB_USER=synergy_user
-DB_PASSWORD=synergy_password
-DB_NAME=synergysphere
+#### Server Configuration
+- `NODE_ENV`: Environment (development/production)
+- `PORT`: Server port (default: 5000)
+- `CLIENT_URL`: Frontend URL for CORS
 
-# JWT
-SECRET_KEY=your-super-secret-jwt-key-here
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
+#### Database Configuration
+- `DB_HOST`: PostgreSQL host
+- `DB_PORT`: PostgreSQL port
+- `DB_NAME`: Database name
+- `DB_USER`: Database username
+- `DB_PASSWORD`: Database password
 
-# SMTP (for email notifications)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASSWORD=your-app-password
-SMTP_FROM=noreply@synergysphere.com
+#### Redis Configuration
+- `REDIS_HOST`: Redis server host
+- `REDIS_PORT`: Redis server port
+- `REDIS_PASSWORD`: Redis password (if required)
 
-# CORS
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
+#### Security Configuration
+- `JWT_SECRET`: JWT signing secret
+- `JWT_REFRESH_SECRET`: Refresh token secret
+- `BCRYPT_ROUNDS`: Password hashing rounds (default: 12)
+
+## 📊 API Documentation
+
+### Authentication Endpoints
+
+#### POST /api/auth/register
+Register a new user account.
+
+**Request Body:**
+```json
+{
+  "username": "johndoe",
+  "email": "john@example.com",
+  "password": "securepassword",
+  "firstName": "John",
+  "lastName": "Doe"
+}
 ```
 
-### Frontend Environment Variables (.env)
-
-```env
-REACT_APP_API_URL=http://localhost:8000/api
+**Response:**
+```json
+{
+  "message": "User registered successfully",
+  "user": {
+    "id": "uuid",
+    "username": "johndoe",
+    "email": "john@example.com",
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "tokens": {
+    "accessToken": "jwt-token",
+    "refreshToken": "refresh-token"
+  }
+}
 ```
 
-## 📚 API Documentation
+#### POST /api/auth/login
+Authenticate user and receive tokens.
 
-Once the backend is running, visit http://localhost:8000/docs for interactive API documentation.
+**Request Body:**
+```json
+{
+  "email": "john@example.com",
+  "password": "securepassword"
+}
+```
 
-### Key Endpoints
+### Project Endpoints
 
-- **Authentication**
-  - `POST /api/auth/register` - Register new user
-  - `POST /api/auth/login` - User login
-  - `GET /api/auth/me` - Get current user
+#### GET /api/projects
+Get all projects for the authenticated user.
 
-- **Projects**
-  - `GET /api/projects/` - List user projects
-  - `POST /api/projects/` - Create project
-  - `GET /api/projects/{id}` - Get project details
-  - `POST /api/projects/{id}/members` - Add team member
+**Query Parameters:**
+- `page`: Page number (default: 1)
+- `limit`: Items per page (default: 20)
+- `status`: Filter by status (active/completed/archived)
+- `search`: Search in project names and descriptions
 
-- **Tasks**
-  - `GET /api/tasks/project/{project_id}` - Get project tasks
-  - `POST /api/tasks/project/{project_id}` - Create task
-  - `PUT /api/tasks/{id}/status` - Update task status
+#### POST /api/projects
+Create a new project.
 
-- **Real-time**
-  - `ws://localhost:8000/api/ws/project/{id}` - Project WebSocket
-  - `ws://localhost:8000/api/ws/notifications` - Notifications WebSocket
+**Request Body:**
+```json
+{
+  "name": "My New Project",
+  "description": "Project description",
+  "deadline": "2024-12-31T23:59:59Z"
+}
+```
+
+#### GET /api/projects/:projectId
+Get detailed project information including tasks and team members.
+
+### Task Endpoints
+
+#### GET /api/tasks
+Get tasks with filtering options.
+
+**Query Parameters:**
+- `projectId`: Filter by project
+- `status`: Filter by status (todo/in-progress/done)
+- `assignedTo`: Filter by assignee
+- `priority`: Filter by priority (low/medium/high/critical)
+
+#### POST /api/tasks
+Create a new task.
+
+**Request Body:**
+```json
+{
+  "title": "Task Title",
+  "description": "Task description",
+  "projectId": "project-uuid",
+  "assignedTo": "user-uuid",
+  "priority": "high",
+  "deadline": "2024-01-31T23:59:59Z"
+}
+```
+
+### Real-time Events
+
+#### WebSocket Events
+- `task-updated`: Task status or details changed
+- `new-task`: New task created
+- `discussion-message`: New message in project discussion
+- `user-online`/`user-offline`: User presence updates
+- `deadline-alert`: Task deadline notifications
+
+## 🔒 Security Features
+
+### Authentication & Authorization
+- **JWT Tokens**: Secure authentication with access and refresh tokens
+- **Password Hashing**: bcrypt with configurable salt rounds
+- **Role-based Access Control**: Project-level and system-level permissions
+- **Token Blacklisting**: Secure logout with token invalidation
+
+### API Security
+- **Rate Limiting**: Prevents API abuse with configurable limits
+- **Input Validation**: Comprehensive validation using Joi
+- **SQL Injection Prevention**: Parameterized queries via PostgreSQL driver
+- **XSS Protection**: Security headers via Helmet middleware
+- **CORS Configuration**: Controlled cross-origin resource sharing
+
+## 📈 Performance Features
+
+### Caching Strategy
+- **Redis Cache**: User sessions, project data, and activity logs
+- **Database Connection Pooling**: Optimized database connections
+- **Query Optimization**: Strategic database indexes for fast queries
+
+### Real-time Performance
+- **WebSocket Connections**: Efficient real-time updates
+- **Event-driven Architecture**: Scalable real-time event handling
+- **Connection Management**: Automatic reconnection and heartbeat monitoring
 
 ## 🧪 Testing
 
-### Sample User Accounts (from sample_data.sql)
-
-- **Admin User**
-  - Email: `john@example.com`
-  - Password: `password123` (you'll need to hash this)
-
-- **Regular User**
-  - Email: `jane@example.com`
-  - Password: `password123` (you'll need to hash this)
-
-### Creating Test Users
-
-Use the registration form or register via API:
-
+### Running Tests
 ```bash
-curl -X POST "http://localhost:8000/api/auth/register" \
-     -H "Content-Type: application/json" \
-     -d '{
-       "name": "Test User",
-       "email": "test@example.com",
-       "password": "password123"
-     }'
+# Run all tests
+npm test
+
+# Run server tests only
+npm run test:server
+
+# Run client tests only
+npm run test:client
+
+# Run tests with coverage
+npm run test:coverage
 ```
 
-## 🚀 Production Deployment
+### Test Structure
+- **Unit Tests**: Individual component and function testing
+- **Integration Tests**: API endpoint testing
+- **Real-time Tests**: WebSocket event testing
 
-### Backend Deployment
+## 🚀 Deployment
 
-1. **Environment Setup**
+### Production Setup
+
+1. **Environment Configuration**
    ```bash
-   # Use production database
-   # Set strong JWT secret
-   # Configure production SMTP
+   NODE_ENV=production
+   JWT_SECRET=production-jwt-secret
+   DB_PASSWORD=secure-production-password
    ```
 
-2. **Run with Gunicorn**
+2. **Database Migration**
    ```bash
-   pip install gunicorn
-   gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker
+   npm run migrate
    ```
 
-### Frontend Deployment
-
-1. **Build for Production**
+3. **Build and Start**
    ```bash
    npm run build
+   npm start
    ```
 
-2. **Serve Static Files**
-   - Deploy `build/` folder to your web server
-   - Configure routing for SPA
+### Docker Deployment
+```bash
+# Build Docker image
+npm run docker:build
 
-## 🛡 Security Features
+# Run with Docker
+npm run docker:run
+```
 
-- **JWT Authentication** with secure token handling
-- **Password Hashing** using bcrypt
-- **CORS Protection** with configurable origins
-- **SQL Injection Protection** via parameterized queries
-- **Input Validation** with Pydantic models
-
-## 🎨 UI/UX Features
-
-- **Responsive Design** - Works on all device sizes
-- **Modern Interface** - Clean, professional design
-- **Loading States** - Proper feedback during operations
-- **Error Handling** - User-friendly error messages
-- **Accessibility** - ARIA labels and keyboard navigation
-
-## 🔄 Real-time Features
-
-- **Live Task Updates** - See changes instantly
-- **Real-time Comments** - Instant messaging experience
-- **Push Notifications** - Stay informed of updates
-- **Collaborative Editing** - Multiple users can work simultaneously
-
-## 📧 Email Notifications
-
-- **Task Assignments** - Notify when tasks are assigned
-- **Deadline Reminders** - Automated reminders for due tasks
-- **Project Invitations** - Email invites for team members
-- **Status Updates** - Progress notifications
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **Database Connection Error**
-   - Ensure MySQL is running
-   - Check database credentials in `.env`
-   - Verify database exists
-
-2. **CORS Errors**
-   - Check `CORS_ORIGINS` in backend `.env`
-   - Ensure frontend URL is included
-
-3. **Email Not Sending**
-   - Configure SMTP settings properly
-   - For Gmail, use App Passwords
-
-4. **WebSocket Connection Failed**
-   - Check firewall settings
-   - Ensure backend is running
+### Recommended Production Stack
+- **Process Manager**: PM2 for Node.js process management
+- **Reverse Proxy**: Nginx for load balancing and SSL termination
+- **Database**: PostgreSQL with replication for high availability
+- **Caching**: Redis cluster for distributed caching
+- **Monitoring**: Application and database monitoring tools
 
 ## 🤝 Contributing
 
-This is a demonstration MVP. For production use, consider:
+### Development Workflow
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-- Adding comprehensive tests
-- Implementing proper logging
-- Adding rate limiting
-- Setting up monitoring
-- Adding data backup strategies
+### Code Style
+- **ESLint**: JavaScript/Node.js linting
+- **Prettier**: Code formatting
+- **Conventional Commits**: Commit message format
 
-## 🏆 Team Details (To Be Filled)
+### Development Guidelines
+- Follow RESTful API design principles
+- Write comprehensive tests for new features
+- Document API endpoints and major functions
+- Use TypeScript for type safety (recommended)
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+### Common Issues
+
+#### Database Connection Issues
+```bash
+# Check PostgreSQL status
+sudo systemctl status postgresql
+
+# Create database if it doesn't exist
+createdb projectmanagement
+```
+
+#### Redis Connection Issues
+```bash
+# Start Redis server
+redis-server
+
+# Check Redis connectivity
+redis-cli ping
+```
+
+#### Port Conflicts
+- Backend runs on port 5000 by default
+- Frontend runs on port 3000 by default
+- Change ports in `.env` file if needed
+
+### Getting Help
+- **Documentation**: Check `/docs` folder for detailed guides
+- **Issues**: Report bugs via GitHub Issues
+- **Discussions**: Use GitHub Discussions for questions
+
+## 🎯 Roadmap
+
+### Upcoming Features
+- [ ] Mobile applications (React Native)
+- [ ] Advanced reporting and analytics
+- [ ] File attachment system
+- [ ] Email notifications
+- [ ] Integration APIs (Slack, Microsoft Teams)
+- [ ] Gantt charts and timeline views
+- [ ] Advanced search with Elasticsearch
+- [ ] Automated testing pipeline
+- [ ] Multi-language support
+
+### Performance Improvements
+- [ ] GraphQL API option
+- [ ] Database query optimization
+- [ ] CDN integration for static assets
+- [ ] Progressive Web App (PWA) features
+
+---
+## 🏆 Team Details 
  ---------------------------------------------
 | Member Name                 | Passing Year |
 |-----------------------------|--------------|
-| Mance Uthappa		             |  2027        |
+| Mance Uthappa		      |  2027        |
 | Amulya U Shet        	      |  2027        |
 | Shivasubrahmanya K C        |  2027        |
-| G Nisha Bangera     	       |  2027        |
+| G Nisha Bangera     	      |  2027        |
 ----------------------------------------------
 - **Selected Problem Statement:** "SynergySphere – Advanced Team Collaboration Platform"
-- **Video Link:** 
-
+- **Video Link:**
 ---
-
-
-## 📄 License
-
-This project is created for demonstration purposes. Feel free to use as a learning resource or foundation for your own projects.
-
 ## 🙏 Acknowledgments
 
-- FastAPI for the excellent Python web framework
-- React team for the powerful frontend library
-- MySQL for reliable data storage
-- All the open-source libraries that made this possible
-s
+- Built with love using modern web technologies
+- Inspired by popular project management tools
+- Community contributions welcome
+---
+**Happy Project Managing! 🚀**
