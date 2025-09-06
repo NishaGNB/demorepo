@@ -45,31 +45,31 @@ A comprehensive full-stack team collaboration application built with React front
 
 
 SynergySphere/
-├── frontend/              # React TypeScript application
+├── frontend/             # React TypeScript application
 │   ├── src/
-│   │   ├── components/       # Reusable React components
-│   │   ├── contexts/        # React Context providers
-│   │   ├── pages/           # Page components
-│   │   ├── services/        # API service layer
-│   │   ├── types/           # TypeScript type definitions
-│   │   └── utils/           # Utility functions
-│   ├── public/              # Static assets
-│   └── package.json         # Dependencies and scripts
-├── backend/               # FastAPI Python server
+│   │   ├── components/   # Reusable React components
+│   │   ├── contexts/     # React Context providers
+│   │   ├── pages/        # Page components
+│   │   ├── services/     # API service layer
+│   │   ├── types/        # TypeScript type definitions
+│   │   └── utils/        # Utility functions
+│   ├── public/           # Static assets
+│   └── package.json      # Dependencies and scripts
+├── backend/              # FastAPI Python server
 │   ├── app/
-│   │   ├── routers/         # API route handlers
-│   │   ├── auth.py          # Authentication utilities
-│   │   ├── database.py      # Database operations
-│   │   ├── models.py        # Pydantic models
-│   │   ├── scheduler.py     # Background task scheduler
-│   │   └── main.py          # Application entry point
-│   ├── requirements.txt     # Python dependencies
-│   └── .env.example         # Environment configuration
-├── database/              # MySQL schema and data
-│   ├── schema.sql           # Database structure
-│   ├── sample_data.sql      # Test data
-│   └── README.md            # Database setup guide
-└── docs/                  # Additional documentation
+│   │   ├── routers/      # API route handlers
+│   │   ├── auth.py       # Authentication utilities
+│   │   ├── database.py   # Database operations
+│   │   ├── models.py     # Pydantic models
+│   │   ├── scheduler.py  # Background task scheduler
+│   │   └── main.py       # Application entry point
+│   ├── requirements.txt  # Python dependencies
+│   └── .env.example      # Environment configuration
+├── database/             # MySQL schema and data
+│   ├── schema.sql        # Database structure
+│   ├── sample_data.sql   # Test data
+│   └── README.md         # Database setup guide
+└── docs/                 # Additional documentation
 
 
 
