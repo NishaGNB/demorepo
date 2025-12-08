@@ -1,5 +1,5 @@
+---JUST FOR DEMO---
 # SynergySphere - Team Collaboration MVP
-
 A comprehensive full-stack team collaboration application built with React frontend, Python FastAPI backend, and MySQL database. This MVP demonstrates modern web development practices with real-time features, responsive design, and robust backend architecture.
 
 ## 🚀 Features
