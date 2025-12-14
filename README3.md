@@ -153,7 +153,7 @@ npm start
 
 ## 🔧 Configuration
 
-### Backend Environment Variables (.env)
+### Banckend Environment Variables (.env)
 
 ```env
 # Database
@@ -351,4 +351,5 @@ This project is created for demonstration purposes. Feel free to use as a learni
 - React team for the powerful frontend library
 - MySQL for reliable data storage
 - All the open-source libraries that made this possible
+
 
